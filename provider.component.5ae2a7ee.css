@@ -1,0 +1,39 @@
+.provider-card > header {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.provider-name {
+    grid-column: 1;
+    vertical-align: middle;
+}
+
+.provider-link {
+    grid-column: 3;
+    text-align: right;
+}
+
+.provider-content {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(2, 2fr);
+}
+
+.provider-content > .provider-details {
+    grid-column: 1;
+}
+
+.provider-content > .provider-description {
+    grid-column: 2;
+    text-align: justify;
+}
+
+.provider-card ul {
+    list-style-type: none;
+    padding: 0 0 0 5px;
+}
+
+.collected-data .data-type, .collected-data .time-step {
+    font-weight: bold;
+}

@@ -1,0 +1,111 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background-color: #f1f1f1;
+}
+
+html, body, body > main {
+    height: 100%;
+    width: 100;
+}
+
+html, body, h1, h2, h3 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+    animation: animateleft 0.4s;
+}
+
+@keyframes animateleft {
+    from {
+        left:-200px;
+        opacity:0
+    } to {
+        left:0;
+        opacity:1
+    }
+}
+
+nav h1, nav h2 {
+    font-weight: 400;
+    padding: 0 0.5em;
+    text-align: center;
+    font-size: 16pt
+}
+
+nav a, nav a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav ul li {
+    text-align: center;
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.5em 1em;
+}
+
+nav ul li a:hover {
+    color: #000;
+    background-color: #ccc;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+
+body > main {
+    margin-left: 200px;
+    padding: 0;
+    margin-top: 15px;
+}
+
+svg.svg-inline--fa {
+    width: 1em !important;
+    margin-right: 1em;
+}
+
+.introduction > header {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.introduction-name {
+    grid-column: 1;
+    vertical-align: middle;
+}
+
+.introduction-link {
+    grid-column: 3;
+    text-align: right;
+}
+
+.card {
+    margin: 0 20% 1em 20%;
+    padding: 1% 1%;
+    background-color: white;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
