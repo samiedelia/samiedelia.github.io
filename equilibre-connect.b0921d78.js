@@ -125,6 +125,9 @@ module.exports = {
             "name": "Température de consigne et mode du thermostat",
             "timestep": "10 minutes"
         }, {
+            "name": "Planning de chauffe",
+            "timestep": "hebdomadaire"
+        }, {
             "name": "Temps de fonctionnement de la chaudière",
             "timestep": "10 minutes"
         }, {
@@ -143,6 +146,12 @@ module.exports = {
         }, {
             "id": "simulateur-chauffage",
             "name": "Le simulateur de chauffage"
+        }, {
+            "id": "qai",
+            "name": "Le bilan qualité de l'air"
+        }, {
+            "id": "g2",
+            "name": "Le bilan gaz"
         }]
     }, {
         "name": "Atlantic",
@@ -151,7 +160,7 @@ module.exports = {
         "image": "atlantic_opt.jpg",
         "devices": [{
             "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
+            "icon": "fas fa-fire fa-w-16"
         }],
         "datatypes": [{
             "name": "Index des radiateurs",
@@ -161,8 +170,8 @@ module.exports = {
             "timestep": "journalier"
         }],
         "purposes": [{
-            "id": "autoconsumption",
-            "name": "Autoconsommation"
+            "id": "simulateur-chauffage",
+            "name": "simulateur de chauffage"
         }]
     }, {
         "name": "Qivivo",
@@ -170,23 +179,38 @@ module.exports = {
         "link": "https://www.netatmo.com/fr-FR/site/",
         "image": "qivivo_opt.png",
         "devices": [{
-            "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
-        }, {
-            "name": "Panneaux solaires",
-            "icon": "fas fa-fire fa-w-16"
+            "name": "Thermostat",
+            "icon": "fas fa-thermometer-quarter fa-w-16"
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Index des radiateurs",
-            "timestep": "journalier"
+            "name": "Température ambiante",
+            "timestep": "10 minutes"
         }, {
             "name": "Température de consigne",
-            "timestep": "2 minutes"
+            "timestep": "10 minutes"
+        }, {
+            "name": "Planning de chauffe",
+            "timestep": "hebdomadaire"
+        }, {
+            "name": "Temps de présence",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Taux d'humidité",
+            "timestep": "10 minutes"
         }],
         "purposes": [{
-            "id": "autoconsumption",
-            "name": "Autoconsommation"
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "simulateur-chauffage",
+            "name": "Le simulateur de chauffage"
+        }, {
+            "id": "qai",
+            "name": "Le bilan qualité de l'air"
+        }, {
+            "id": "g2",
+            "name": "Le bilan gaz"
         }]
     }, {
         "name": "Deltadore",
@@ -194,23 +218,23 @@ module.exports = {
         "link": "https://www.netatmo.com/fr-FR/site/",
         "image": "deltadore_opt.png",
         "devices": [{
-            "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
-        }, {
-            "name": "Panneaux solaires",
-            "icon": "fas fa-fire fa-w-16"
+            "name": "Thermostat",
+            "icon": "fas fa-thermometer-quarter fa-w-16"
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Index des radiateurs",
-            "timestep": "journalier"
+            "name": "Température ambiante",
+            "timestep": "10 minutes"
         }, {
-            "name": "Température de consigne",
-            "timestep": "2 minutes"
+            "name": "Température de consigne et mode du thermostat",
+            "timestep": "10 minutes"
         }],
         "purposes": [{
-            "id": "autoconsumption",
-            "name": "Autoconsommation"
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "simulateur-chauffage",
+            "name": "Le simulateur de chauffage"
         }]
     }, {
         "name": "Honeywell",
@@ -218,23 +242,26 @@ module.exports = {
         "link": "https://www.netatmo.com/fr-FR/site/",
         "image": "honeywell_opt.jpg",
         "devices": [{
-            "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
-        }, {
-            "name": "Panneaux solaires",
-            "icon": "fas fa-fire fa-w-16"
+            "name": "Thermostat",
+            "icon": "fas fa-thermometer-quarter fa-w-16"
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Index des radiateurs",
-            "timestep": "journalier"
+            "name": "Température ambiante",
+            "timestep": "10 minutes"
         }, {
-            "name": "Température de consigne",
-            "timestep": "2 minutes"
+            "name": "Température de consigne et mode du thermostat",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Planning de chauffe",
+            "timestep": "hebdomadaire"
         }],
         "purposes": [{
-            "id": "autoconsumption",
-            "name": "Autoconsommation"
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "simulateur-chauffage",
+            "name": "Le simulateur de chauffage"
         }]
     }, {
         "name": "Comwatt",
@@ -242,18 +269,18 @@ module.exports = {
         "link": "https://www.netatmo.com/fr-FR/site/",
         "image": "comwatt_opt.jpg",
         "devices": [{
-            "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
-        }, {
             "name": "Panneaux solaires",
-            "icon": "fas fa-fire fa-w-16"
+            "icon": "fas fa-sun fa-w-16"
         }],
-        "prerequisites": [],
+        "prerequisites": [{
+            "name": "Compteur Linky",
+            "icon": "fas fa-bolt fa-w-16"
+        }],
         "datatypes": [{
-            "name": "Index des radiateurs",
-            "timestep": "journalier"
+            "name": "Production d'éléctricité",
+            "timestep": "2 minutes"
         }, {
-            "name": "Température de consigne",
+            "name": "Consommation globale d'éléctricité",
             "timestep": "2 minutes"
         }],
         "purposes": [{
@@ -470,6 +497,16 @@ module.exports = {
         "name": "Simulateur de chauffage",
         "image": "chart.png",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+        "id": "qai",
+        "name": "Bilan qualité de l'air",
+        "image": "air.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+        "id": "g2",
+        "name": "Bilan gaz",
+        "image": "radiator.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }]
 };
 },{}],"feature\\feature.service.js":[function(require,module,exports) {
@@ -676,7 +713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53456' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63340' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
