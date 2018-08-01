@@ -119,25 +119,25 @@ module.exports = {
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Température ambiante",
+            "name": "Température ambiante - Station et thermostat",
             "timestep": "10 minutes"
         }, {
-            "name": "Température de consigne et mode du thermostat",
+            "name": "Température de consigne et mode du thermostat - Thermostat uniquement",
             "timestep": "10 minutes"
         }, {
-            "name": "Planning de chauffe",
+            "name": "Planning de chauffe - Thermostat uniquement",
             "timestep": "hebdomadaire"
         }, {
-            "name": "Temps de fonctionnement de la chaudière",
+            "name": "Temps de fonctionnement de la chaudière - Thermostat uniquement",
             "timestep": "10 minutes"
         }, {
-            "name": "Taux d'humidité",
+            "name": "Taux d'humidité - Station uniquement",
             "timestep": "10 minutes"
         }, {
-            "name": "Bruit",
+            "name": "Bruit - Station uniquement",
             "timestep": "10 minutes"
         }, {
-            "name": "Taux de Co2",
+            "name": "Taux de Co2 - Station uniquement",
             "timestep": "10 minutes"
         }],
         "purposes": [{
@@ -172,6 +172,15 @@ module.exports = {
         "purposes": [{
             "id": "simulateur-chauffage",
             "name": "simulateur de chauffage"
+        }, {
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "part-chauffage ",
+            "name": "Part chauffage connecté"
+        }, {
+            "id": "suivi-conso-chauffage",
+            "name": "Suivi des conso chauffage par pièce"
         }]
     }, {
         "name": "Qivivo",
@@ -713,7 +722,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63340' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64867' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
