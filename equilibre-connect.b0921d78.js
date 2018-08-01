@@ -111,23 +111,38 @@ module.exports = {
         "link": "https://www.netatmo.com/fr-FR/site/",
         "image": "netatmo_opt.png",
         "devices": [{
-            "name": "Radiateur",
-            "icon": "fas fa-sun fa-w-16"
+            "name": "Thermostat",
+            "icon": "fas fa-thermometer-quarter fa-w-16"
         }, {
-            "name": "Panneaux solaires",
-            "icon": "fas fa-fire fa-w-16"
+            "name": "Station météo",
+            "icon": "fas fa-tint fa-w-16"
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Index des radiateurs",
-            "timestep": "journalier"
+            "name": "Température ambiante",
+            "timestep": "10 minutes"
         }, {
-            "name": "Température de consigne",
-            "timestep": "2 minutes"
+            "name": "Température de consigne et mode du thermostat",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Temps de fonctionnement de la chaudière",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Taux d'humidité",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Bruit",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Taux de Co2",
+            "timestep": "10 minutes"
         }],
         "purposes": [{
-            "id": "autoconsumption",
-            "name": "Autoconsommation"
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "simulateur-chauffage",
+            "name": "Le simulateur de chauffage"
         }]
     }, {
         "name": "Atlantic",
@@ -445,6 +460,16 @@ module.exports = {
         "name": "Autoconsommation",
         "image": "autoconsumption.png",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+        "id": "now-home",
+        "name": "En ce moment chez moi",
+        "image": "home.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }, {
+        "id": "simulateur-chauffage",
+        "name": "Simulateur de chauffage",
+        "image": "chart.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }]
 };
 },{}],"feature\\feature.service.js":[function(require,module,exports) {
@@ -651,7 +676,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63555' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53456' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
