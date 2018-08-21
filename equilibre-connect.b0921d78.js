@@ -119,25 +119,32 @@ module.exports = {
         }],
         "prerequisites": [],
         "datatypes": [{
-            "name": "Température ambiante - Station et thermostat",
+            "name": "Température ambiante",
+            "device": "Station et thermostat",
             "timestep": "10 minutes"
         }, {
-            "name": "Température de consigne et mode du thermostat - Thermostat uniquement",
+            "name": "Température de consigne et mode",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
-            "name": "Planning de chauffe - Thermostat uniquement",
+            "name": "Planning de chauffe",
+            "device": "Thermostat",
             "timestep": "hebdomadaire"
         }, {
-            "name": "Temps de fonctionnement de la chaudière - Thermostat uniquement",
+            "name": "Temps de fonctionnement de la chaudière",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
-            "name": "Taux d'humidité - Station uniquement",
+            "name": "Taux d'humidité",
+            "device": "Station",
             "timestep": "10 minutes"
         }, {
-            "name": "Bruit - Station uniquement",
+            "name": "Bruit",
+            "device": "Station",
             "timestep": "10 minutes"
         }, {
-            "name": "Taux de Co2 - Station uniquement",
+            "name": "Taux de Co2",
+            "device": "Station",
             "timestep": "10 minutes"
         }],
         "purposes": [{
@@ -164,9 +171,11 @@ module.exports = {
         }],
         "datatypes": [{
             "name": "Index des radiateurs",
+            "device": "Radiateur",
             "timestep": "journalier"
         }, {
             "name": "Température de consigne",
+            "device": "Radiateur",
             "timestep": "journalier"
         }],
         "purposes": [{
@@ -194,18 +203,23 @@ module.exports = {
         "prerequisites": [],
         "datatypes": [{
             "name": "Température ambiante",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Température de consigne",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Planning de chauffe",
+            "device": "Thermostat",
             "timestep": "hebdomadaire"
         }, {
             "name": "Temps de présence",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Taux d'humidité",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }],
         "purposes": [{
@@ -233,9 +247,11 @@ module.exports = {
         "prerequisites": [],
         "datatypes": [{
             "name": "Température ambiante",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Température de consigne et mode du thermostat",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }],
         "purposes": [{
@@ -257,12 +273,15 @@ module.exports = {
         "prerequisites": [],
         "datatypes": [{
             "name": "Température ambiante",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Température de consigne et mode du thermostat",
+            "device": "Thermostat",
             "timestep": "10 minutes"
         }, {
             "name": "Planning de chauffe",
+            "device": "Thermostat",
             "timestep": "hebdomadaire"
         }],
         "purposes": [{
@@ -287,9 +306,11 @@ module.exports = {
         }],
         "datatypes": [{
             "name": "Production d'éléctricité",
+            "device": "Box",
             "timestep": "2 minutes"
         }, {
             "name": "Consommation globale d'éléctricité",
+            "device": "Box",
             "timestep": "2 minutes"
         }],
         "purposes": [{
@@ -377,18 +398,35 @@ var newListItem = function newListItem(content, icon) {
     return li;
 };
 
-var newDataTypeItem = function newDataTypeItem(dataType, timestep) {
-    var li = document.createElement("li");
-    var dataTypeSpan = document.createElement("span");
-    dataTypeSpan.className = "data-type";
-    dataTypeSpan.appendChild(document.createTextNode(dataType));
-    var timeStepSpan = document.createElement("span");
-    timeStepSpan.className = "time-step";
-    timeStepSpan.appendChild(document.createTextNode(timestep));
+/*const newDataTypeItem = (dataType, timestep) => {
+    const li = document.createElement("li")
+    const dataTypeSpan = document.createElement("span")
+    dataTypeSpan.className = "data-type"
+    dataTypeSpan.appendChild(document.createTextNode(dataType))
+    const timeStepSpan = document.createElement("span")
+    timeStepSpan.className = "time-step"
+    timeStepSpan.appendChild(document.createTextNode(timestep))
     li.appendChild(dataTypeSpan);
-    li.appendChild(document.createTextNode(' au pas de temps '));
+    li.appendChild(document.createTextNode(' au pas de temps '))
     li.appendChild(timeStepSpan);
     return li;
+}*/
+
+var newDataTypeItemTable = function newDataTypeItemTable(dataType, device, timestep) {
+    var tr = document.createElement("tr");
+    var datatypeColum = document.createElement("td");
+    var deviceColum = document.createElement("td");
+    var timestepColum = document.createElement("td");
+
+    datatypeColum.appendChild(document.createTextNode(dataType));
+    deviceColum.appendChild(document.createTextNode(device));
+    timestepColum.appendChild(document.createTextNode(timestep));
+
+    tr.appendChild(datatypeColum);
+    tr.appendChild(deviceColum);
+    tr.appendChild(timestepColum);
+
+    return tr;
 };
 
 var newPurposeItem = function newPurposeItem(id, name) {
@@ -460,24 +498,28 @@ var ProviderComponent = function () {
             }
 
             if (datatypes && datatypes.length > 0) {
-                var _list2 = instance.querySelector('ul.collected-data');
+                /*const list = instance.querySelector('ul.collected-data')
+                datatypes.map(({name, timestep}) => newDataTypeItem(name, timestep)).forEach(x => list.appendChild(x));*/
+
+                var listTable = instance.querySelector('table.collected-data-table');
                 datatypes.map(function (_ref3) {
                     var name = _ref3.name,
+                        device = _ref3.device,
                         timestep = _ref3.timestep;
-                    return newDataTypeItem(name, timestep);
+                    return newDataTypeItemTable(name, device, timestep);
                 }).forEach(function (x) {
-                    return _list2.appendChild(x);
+                    return listTable.appendChild(x);
                 });
             }
 
             if (purposes && purposes.length > 0) {
-                var _list3 = instance.querySelector('ul.purpose-list');
+                var _list2 = instance.querySelector('ul.purpose-list');
                 purposes.map(function (_ref4) {
                     var id = _ref4.id,
                         name = _ref4.name;
                     return newPurposeItem(id, name);
                 }).forEach(function (x) {
-                    return _list3.appendChild(x);
+                    return _list2.appendChild(x);
                 });
             }
 
@@ -722,7 +764,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64867' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63130' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
