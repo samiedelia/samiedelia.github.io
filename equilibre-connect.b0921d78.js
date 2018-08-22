@@ -317,6 +317,36 @@ module.exports = {
             "id": "autoconsumption",
             "name": "Autoconsommation"
         }]
+    }, {
+        "name": "Nest",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "link": "https://www.netatmo.com/fr-FR/site/",
+        "image": "nest_opt.png",
+        "devices": [{
+            "name": "Thermostat",
+            "icon": "fas fa-thermometer-quarter fa-w-16"
+        }],
+        "prerequisites": [],
+        "datatypes": [{
+            "name": "Température",
+            "device": "Thermostat",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Température de consigne et mode",
+            "device": "Thermostat",
+            "timestep": "10 minutes"
+        }, {
+            "name": "Humidité",
+            "device": "Thermostat",
+            "timestep": "10 minutes"
+        }],
+        "purposes": [{
+            "id": "now-home",
+            "name": "En ce moment chez moi"
+        }, {
+            "id": "simulateur-chauffage",
+            "name": "Le simulateur de chauffage"
+        }]
     }]
 };
 },{}],"provider\\provider.service.js":[function(require,module,exports) {
@@ -764,7 +794,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63130' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54086' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
